@@ -20,12 +20,7 @@ export default function LoginBtn(props) {
   const classes = useStyles();
 
   return (
-    <Button
-      fullWidth
-      color="secondary"
-      variant="contained"
-      className={classes.LoginBtnCreate}
-    >
+    <Button fullWidth color="secondary" variant="contained" className={classes.LoginBtnCreate}>
       {props.name}
     </Button>
   );

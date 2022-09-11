@@ -92,10 +92,7 @@ export default function EditProfession() {
         <MonthAndYear />
       </Grid>
       <Grid container spacing={2} className={classes.grid}>
-        <Dropzone
-          desc="adjuntar titulo profesional"
-          icon={<AddOutlinedIcon className={classes.IconAdd} />}
-        />
+        <Dropzone desc="adjuntar titulo profesional" icon={<AddOutlinedIcon className={classes.IconAdd} />} />
       </Grid>
     </>
   );

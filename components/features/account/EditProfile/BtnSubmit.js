@@ -25,12 +25,7 @@ export default function BtnSubmit() {
 
   return (
     <>
-      <Button
-        type="submit"
-        fullWidth
-        variant="contained"
-        className={classes.btn}
-      >
+      <Button type="submit" fullWidth variant="contained" className={classes.btn}>
         GUARDAR
       </Button>
     </>

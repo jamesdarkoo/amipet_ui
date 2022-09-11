@@ -2,6 +2,7 @@ import React from 'react';
 import { IconButton } from '@material-ui/core';
 import { alpha, makeStyles } from '@material-ui/core/styles';
 import { Search } from '@material-ui/icons';
+import { useSelector } from 'react-redux';
 import Logo from './Logo';
 import SearchBox from './SearchBox';
 import IconLogin from './IconLogin';
@@ -38,23 +39,22 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function ComponentsNav(props) {
+  const user = useSelector((state) => state.auth.user);
   const classes = useStyles();
+
   return (
     <>
-      <IconButton
-        aria-label="search"
-        color="inherit"
-        className={classes.iconSearch}
-      >
+      <IconButton aria-label="search" color="inherit" className={classes.iconSearch}>
         <Search />
       </IconButton>
       <Logo />
       <div className={classes.search}>
         <SearchBox />
       </div>
-      <div className={classes.icons}>
+      {user && <div className={classes.icons}>
         <IconLogin />
       </div>
+      }
     </>
   );
 }

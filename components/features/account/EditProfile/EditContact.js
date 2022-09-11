@@ -8,10 +8,7 @@ import Icon from '../../../Icon';
 import EditPassword from '../../../EditPassword';
 import DateFnsUtils from '@date-io/date-fns';
 import deLocale from 'date-fns/locale/es';
-import {
-  MuiPickersUtilsProvider,
-  KeyboardDatePicker,
-} from '@material-ui/pickers';
+import { MuiPickersUtilsProvider, KeyboardDatePicker } from '@material-ui/pickers';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -58,9 +55,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function EditContact() {
-  const [selectedDate, setSelectedDate] = useState(
-    new Date('2020-08-18T21:11:54'),
-  );
+  const [selectedDate, setSelectedDate] = useState(new Date('2020-08-18T21:11:54'));
   const handleDateChange = (date) => {
     setSelectedDate(date);
   };
@@ -69,26 +64,10 @@ export default function EditContact() {
     <>
       <Grid container spacing={2} className={classes.root}>
         <Grid item xs={12} sm={6} className={classes.Item}>
-          <TextField
-            className={classes.TextField}
-            size="small"
-            name="firstName"
-            variant="outlined"
-            fullWidth
-            id="firstName"
-            label="Nombres"
-          />
+          <TextField className={classes.TextField} size="small" name="firstName" variant="outlined" fullWidth id="firstName" label="Nombres" />
         </Grid>
         <Grid item xs={12} sm={6} className={classes.Item}>
-          <TextField
-            className={classes.TextField}
-            size="small"
-            name="lastName"
-            variant="outlined"
-            fullWidth
-            id="lastName"
-            label="Apellidos"
-          />
+          <TextField className={classes.TextField} size="small" name="lastName" variant="outlined" fullWidth id="lastName" label="Apellidos" />
         </Grid>
       </Grid>
       <Grid container spacing={2} className={classes.root}>
@@ -137,28 +116,12 @@ export default function EditContact() {
           </MuiPickersUtilsProvider>
         </Grid>
         <Grid item xs={12} sm={6} className={classes.Item}>
-          <TextField
-            className={classes.TextField}
-            size="small"
-            name="rut"
-            variant="outlined"
-            fullWidth
-            id="rut"
-            label="Rut:"
-          />
+          <TextField className={classes.TextField} size="small" name="rut" variant="outlined" fullWidth id="rut" label="Rut:" />
         </Grid>
       </Grid>
       <Grid container spacing={2} className={classes.root}>
         <Grid item xs={12} className={classes.Item}>
-          <TextField
-            className={classes.TextField}
-            size="small"
-            name="domicilio"
-            variant="outlined"
-            fullWidth
-            id="domicilio"
-            label="Domicilio"
-          />
+          <TextField className={classes.TextField} size="small" name="domicilio" variant="outlined" fullWidth id="domicilio" label="Domicilio" />
         </Grid>
       </Grid>
       <Grid container spacing={2} className={classes.root}>
@@ -191,15 +154,7 @@ export default function EditContact() {
       </Grid>
       <Grid container spacing={2} className={classes.root}>
         <Grid item xs={12} className={classes.Item}>
-          <TextField
-            className={classes.TextField}
-            size="small"
-            name="mail"
-            variant="outlined"
-            fullWidth
-            id="mail"
-            label="Correo electronico"
-          />
+          <TextField className={classes.TextField} size="small" name="mail" variant="outlined" fullWidth id="mail" label="Correo electronico" />
         </Grid>
       </Grid>
       <Grid container spacing={2} className={classes.root}>
@@ -210,13 +165,7 @@ export default function EditContact() {
           <EditPassword label="Confirmar contraseña" width={160} />
         </Grid>
       </Grid>
-      <Gender
-        desc="Sexo:"
-        male="Hombre"
-        female="Mujer"
-        icon={<Icon icon="fas fa-mars" />}
-        iconTwo={<Icon icon="fas fa-venus" />}
-      />
+      <Gender desc="Sexo:" male="Hombre" female="Mujer" icon={<Icon icon="fas fa-mars" />} iconTwo={<Icon icon="fas fa-venus" />} />
       <Grid container spacing={2} className={classes.root}>
         <Grid item xs={12} className={classes.Item}>
           <Bio number="200" desc="Bio" />

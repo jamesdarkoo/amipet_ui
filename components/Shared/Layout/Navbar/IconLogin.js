@@ -4,12 +4,10 @@ import IconButton from '@material-ui/core/IconButton';
 import Badge from '@material-ui/core/Badge';
 import MenuItem from '@material-ui/core/MenuItem';
 import Menu from '@material-ui/core/Menu';
-import {
-  MailOutlineOutlined,
-  NotificationsOutlined,
-  AccountCircleOutlined,
-} from '@material-ui/icons';
+import { MailOutlineOutlined, NotificationsOutlined, AccountCircleOutlined } from '@material-ui/icons';
 import { useRouter } from 'next/router';
+import { useDispatch } from 'react-redux';
+import { signOut } from '../../../../redux/auth.slice';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -37,6 +35,7 @@ const useStyles = makeStyles((theme) => ({
 
 export default function IconLogin() {
   const router = useRouter();
+  const dispatch = useDispatch();
   const classes = useStyles();
   const [anchorEl, setAnchorEl] = React.useState(null);
   const isMenuOpen = Boolean(anchorEl);
@@ -61,14 +60,18 @@ export default function IconLogin() {
       open={isMenuOpen}
       onClose={handleMenuClose}
     >
-      <MenuItem onClick={() => handleMenuClose('/profile')}>
-        Ver perfil
-      </MenuItem>
-      <MenuItem onClick={() => handleMenuClose('/edit-profile')}>
-        Editar perfil
-      </MenuItem>
+      <MenuItem onClick={() => handleMenuClose('/profile')}>Ver perfil</MenuItem>
+      <MenuItem onClick={() => handleMenuClose('/edit-profile')}>Editar perfil</MenuItem>
       <MenuItem onClick={() => handleMenuClose('/')}>Crear cuenta pro</MenuItem>
-      <MenuItem onClick={() => handleMenuClose('/')}>Cerrar sesión</MenuItem>
+      <MenuItem
+        onClick={() => {
+          setAnchorEl(null);
+          dispatch(signOut());
+          router.push('/login');
+        }}
+      >
+        Cerrar sesión
+      </MenuItem>
     </Menu>
   );
 
@@ -84,11 +87,7 @@ export default function IconLogin() {
           <MailOutlineOutlined />
         </Badge>
       </IconButton>
-      <IconButton
-        aria-label="show 4 new mails"
-        className={classes.root}
-        onClick={handleProfileMenuOpen}
-      >
+      <IconButton aria-label="show 4 new mails" className={classes.root} onClick={handleProfileMenuOpen}>
         <AccountCircleOutlined />
       </IconButton>
       {renderMenu}

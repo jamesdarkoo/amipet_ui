@@ -54,10 +54,7 @@ export default function Btns(props) {
       <Typography component="h3" variant="h5" className={classes.Title}>
         {props.title}
       </Typography>
-      <Button
-        variant="outlined"
-        className={`${classes.Btns} ${classes.Hidden}`}
-      >
+      <Button variant="outlined" className={`${classes.Btns} ${classes.Hidden}`}>
         {props.btn2}
         {props.icon1}
       </Button>

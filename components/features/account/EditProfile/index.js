@@ -59,12 +59,7 @@ export default function EditProfile() {
 
   return (
     <Container component="main" maxWidth="lg">
-      <Btns
-        btn1="Volver atras"
-        btn2="Ver perfil"
-        title="Editar perfil"
-        icon1={<PersonOutlineIcon className={classes.Icon} />}
-      />
+      <Btns btn1="Volver atras" btn2="Ver perfil" title="Editar perfil" icon1={<PersonOutlineIcon className={classes.Icon} />} />
       <CssBaseline />
       <Container maxWidth="md">
         <div className={classes.paper}>
@@ -73,21 +68,13 @@ export default function EditProfile() {
             <EditContact />
             <div className={classes.picture}>
               <DropZonePicture />
-              <Typography
-                component="h3"
-                variant="h5"
-                className={classes.profile}
-              >
+              <Typography component="h3" variant="h5" className={classes.profile}>
                 Foto perfil
               </Typography>
             </div>
             <Divider className={classes.Divider} />
             <div className={classes.SeccionEnd}>
-              <Typography
-                component="h3"
-                variant="h5"
-                className={classes.profile}
-              >
+              <Typography component="h3" variant="h5" className={classes.profile}>
                 Perfil profesional
               </Typography>
               <div className={classes.form}>

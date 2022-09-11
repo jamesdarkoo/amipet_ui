@@ -26,13 +26,7 @@ export default function Logo() {
     <div className={classes.logo}>
       <Link href="/">
         <a>
-          <Image
-            src="/amipet-logo.png"
-            className={classes.img}
-            height={46}
-            width={120}
-            alt="Amipet"
-          />
+          <Image src="/amipet-logo.png" className={classes.img} height={46} width={120} alt="Amipet" />
         </a>
       </Link>
     </div>

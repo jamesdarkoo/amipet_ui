@@ -25,10 +25,7 @@ const useStyles = makeStyles((theme) => ({
   image: {
     backgroundImage: 'url(https://source.unsplash.com/random)',
     backgroundRepeat: 'no-repeat',
-    backgroundColor:
-      theme.palette.type === 'dark'
-        ? theme.palette.grey[900]
-        : theme.palette.grey[50],
+    backgroundColor: theme.palette.type === 'dark' ? theme.palette.grey[900] : theme.palette.grey[50],
     height: '91vh',
     padding: '20em 0',
     backgroundSize: 'cover',
@@ -51,14 +48,7 @@ export default function LoginContainer(props) {
 
   return (
     <div className={classes.image}>
-      <Grid
-        item
-        md={5}
-        component={Paper}
-        elevation={6}
-        square
-        className={classes.LoginContainer}
-      >
+      <Grid item md={5} component={Paper} elevation={6} square className={classes.LoginContainer}>
         <div className={classes.paper}>{props.children}</div>
       </Grid>
     </div>

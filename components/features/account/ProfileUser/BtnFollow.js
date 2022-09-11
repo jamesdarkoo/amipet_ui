@@ -20,12 +20,7 @@ export default function BtnFollow() {
   };
 
   return (
-    <Button
-      variant="outlined"
-      size="small"
-      className={`${classes.Btns}`}
-      onClick={() => onClick()}
-    >
+    <Button variant="outlined" size="small" className={`${classes.Btns}`} onClick={() => onClick()}>
       {follow}
     </Button>
   );

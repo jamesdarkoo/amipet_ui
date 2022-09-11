@@ -68,11 +68,7 @@ export default function ImagesModal({ photos, number }) {
   }
   return (
     <div className={classes.root}>
-      <ImageList
-        rowHeight={height}
-        cols={numberCard}
-        className={classes.gridList}
-      >
+      <ImageList rowHeight={height} cols={numberCard} className={classes.gridList}>
         {photos.map((tile, idx) => {
           return (
             <ImageListItem key={idx}>

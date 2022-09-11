@@ -29,11 +29,7 @@ export default function SearchBox() {
   return (
     <Paper component="form" className={classes.root}>
       <InputBase className={classes.input} placeholder="Buscar" />
-      <IconButton
-        type="submit"
-        className={classes.iconButton}
-        aria-label="search"
-      >
+      <IconButton type="submit" className={classes.iconButton} aria-label="search">
         <Search />
       </IconButton>
     </Paper>

@@ -47,16 +47,10 @@ const useStyles = makeStyles((theme) => ({
   LoginBtnIcon: {
     'backgroundColor': 'transparent',
     'padding': theme.spacing(1),
-    'color': (props) =>
-      props.color === 'red'
-        ? `${theme.palette.secondary.facebook}`
-        : `${theme.palette.secondary.google}`,
+    'color': (props) => (props.color === 'red' ? `${theme.palette.secondary.facebook}` : `${theme.palette.secondary.google}`),
     'margin': theme.spacing(1, 0),
     'width': '100%',
-    'border': (props) =>
-      props.color === 'red'
-        ? `1px solid ${theme.palette.secondary.facebook}`
-        : `1px solid ${theme.palette.secondary.google} `,
+    'border': (props) => (props.color === 'red' ? `1px solid ${theme.palette.secondary.facebook}` : `1px solid ${theme.palette.secondary.google} `),
     'textTransform': 'capitalize',
     'borderRadius': '8px',
     'boxShadow': 'none',
@@ -123,22 +117,14 @@ export default function LoginBtnCreate() {
         />
         <EditPassword label="Contraseña" width={80} />
         <div className={classes.LoginCreateBtns}>
-          <LoginBtnIcon
-            name="con facebook"
-            color="red"
-            icon={<Icon icon="fab fa-facebook-f" />}
-          />
-          <LoginBtnIcon
-            name="con google"
-            color="blue"
-            icon={<Icon icon="fab fa-google" />}
-          />
+          <LoginBtnIcon name="con facebook" color="red" icon={<Icon icon="fab fa-facebook-f" />} />
+          <LoginBtnIcon name="con google" color="blue" icon={<Icon icon="fab fa-google" />} />
         </div>
         <LoginBtnSubmit name="Registrarse" />
       </form>
       <Link href="/sign-in" className={classes.Link}>
         <a>
-          <LoginBtn name="Ingresa con tu cuenta" />  
+          <LoginBtn name="Ingresa con tu cuenta" />
         </a>
       </Link>
     </LoginContainer>

@@ -37,27 +37,16 @@ export default function EditPassword({ label, width, value, onChange }) {
 
   return (
     <>
-      <FormControl
-        className={classes.Item}
-        fullWidth
-        size="small"
-        variant="outlined"
-      >
-        <InputLabel htmlFor="outlined-adornment-password">
-          {label}
-        </InputLabel>
+      <FormControl className={classes.Item} fullWidth size="small" variant="outlined">
+        <InputLabel htmlFor="outlined-adornment-password">{label}</InputLabel>
         <OutlinedInput
+          required
           type={showPassword ? 'text' : 'password'}
           value={value}
           onChange={onChange}
           endAdornment={
             <InputAdornment position="end">
-              <IconButton
-                className={classes.passwordIcon}
-                aria-label="toggle password visibility"
-                onClick={handleClickShowPassword}
-                edge="end"
-              >
+              <IconButton className={classes.passwordIcon} aria-label="toggle password visibility" onClick={handleClickShowPassword} edge="end">
                 {showPassword ? <Visibility /> : <VisibilityOff />}
               </IconButton>
             </InputAdornment>

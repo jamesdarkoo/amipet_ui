@@ -19,8 +19,8 @@ function withAuthorization(Component) {
       },
     });
 
-    return <Component {...props} />
-  }
+    return <Component {...props} />;
+  };
 
   return Authorization;
 }

@@ -10,12 +10,7 @@ import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 import Avatar from '@material-ui/core/Avatar';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import {
-  faArrowLeft,
-  faArrowRight,
-  faPlus,
-  faPaw,
-} from '@fortawesome/free-solid-svg-icons';
+import { faArrowLeft, faArrowRight, faPlus, faPaw } from '@fortawesome/free-solid-svg-icons';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -83,17 +78,11 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   btnCard: {
-    'backgroundColor': (props) =>
-      props.backgroundColor === 'green'
-        ? `${theme.palette.primary.main}`
-        : `${theme.palette.secondary.main}`,
+    'backgroundColor': (props) => (props.backgroundColor === 'green' ? `${theme.palette.primary.main}` : `${theme.palette.secondary.main}`),
     'color': theme.palette.secondary.light,
     'textTransform': 'none',
     '&:hover': {
-      backgroundColor: (props) =>
-        props.backgroundColor === 'green'
-          ? `${theme.palette.primary.main}`
-          : `${theme.palette.secondary.main}`,
+      backgroundColor: (props) => (props.backgroundColor === 'green' ? `${theme.palette.primary.main}` : `${theme.palette.secondary.main}`),
     },
   },
   addPets: {
@@ -166,11 +155,7 @@ export default function CarouselItems() {
         <Card className={classes.root}>
           <CardContent className={classes.ProfileCardCenter}>
             <div>
-              <Avatar
-                alt="Remy Sharp"
-                src={list.url}
-                className={classes.small}
-              />
+              <Avatar alt="Remy Sharp" src={list.url} className={classes.small} />
             </div>
             <CardActions className={classes.ProfileCardActions}>
               <BtnCard name="ver perfil" backgroundColor="green" />
@@ -212,24 +197,12 @@ export default function CarouselItems() {
   };
   function SampleNextArrow(props) {
     const { onClick } = props;
-    return (
-      <FontAwesomeIcon
-        className={classes.arrow}
-        icon={faArrowRight}
-        onClick={onClick}
-      />
-    );
+    return <FontAwesomeIcon className={classes.arrow} icon={faArrowRight} onClick={onClick} />;
   }
 
   function SamplePrevArrow(props) {
     const { onClick } = props;
-    return (
-      <FontAwesomeIcon
-        className={classes.arrow}
-        icon={faArrowLeft}
-        onClick={onClick}
-      />
-    );
+    return <FontAwesomeIcon className={classes.arrow} icon={faArrowLeft} onClick={onClick} />;
   }
   return (
     <div className={classes.carousel}>
@@ -246,9 +219,7 @@ export default function CarouselItems() {
                     <FontAwesomeIcon icon={faPlus} />
                   </div>
                   <CardActions className={classes.ProfileCardActions}>
-                    <Button className={classes.btnAddPets}>
-                      agregar mascostas
-                    </Button>
+                    <Button className={classes.btnAddPets}>agregar mascostas</Button>
                   </CardActions>
                 </CardContent>
               </Card>

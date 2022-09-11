@@ -87,11 +87,7 @@ export default function ProfileHeader() {
 
   return (
     <ProfileContainer>
-      <Avatar
-        alt="Remy Sharp"
-        src="https://source.unsplash.com/random"
-        className={classes.small}
-      />
+      <Avatar alt="Remy Sharp" src="https://source.unsplash.com/random" className={classes.small} />
       <div className={classes.info}>
         <div className={classes.HeaderName}>
           <h3 className={classes.HeaderNameUser}>jesica alba</h3>
@@ -123,10 +119,8 @@ export default function ProfileHeader() {
         </div>
         <div className={classes.description}>
           <p>
-            Lorem Ipsum is simply dummy text of the printing and typesetting
-            industry. Lorem Ipsum has been the industry&apos;s standard dummy
-            text ever since the 1500s, when an unknown printer took a galley of
-            type a
+            Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry&apos;s standard dummy text
+            ever since the 1500s, when an unknown printer took a galley of type a
           </p>
         </div>
       </div>

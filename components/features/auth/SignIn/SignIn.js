@@ -48,11 +48,11 @@ export default function SignInSide({ onSubmit }) {
   const handleSubmit = (e) => {
     e.preventDefault();
     onSubmit(email, password);
-  }
+  };
 
   return (
     <>
-      <form className={classes.form} noValidate onSubmit={handleSubmit}>
+      <form className={classes.form} onSubmit={handleSubmit}>
         <TextField
           className={classes.input}
           variant="outlined"
@@ -64,6 +64,7 @@ export default function SignInSide({ onSubmit }) {
           name="email"
           value={email}
           autoComplete="email"
+          required
           onChange={(e) => setEmail(e.target.value)}
         />
         <EditPassword label="Contraseña" width={80} value={password} onChange={(e) => setPassword(e.target.value)} />

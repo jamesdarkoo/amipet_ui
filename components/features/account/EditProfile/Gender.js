@@ -7,16 +7,7 @@ import RadioGroup from '@material-ui/core/RadioGroup';
 import Radio from '@material-ui/core/Radio';
 import FormLabel from '@material-ui/core/FormLabel';
 
-const Gender = ({
-  description,
-  value1,
-  value2,
-  icon,
-  iconTwo,
-  name,
-  value,
-  onChange,
-}) => {
+const Gender = ({ description, value1, value2, icon, iconTwo, name, value, onChange }) => {
   const classes = useStyles();
   return (
     <div className={classes.group}>
@@ -24,25 +15,10 @@ const Gender = ({
         {description}:
       </FormLabel>
       <FormControl component="fieldset" className={classes.formControl}>
-        <RadioGroup
-          aria-label="gender"
-          name={name}
-          value={value}
-          onChange={onChange}
-        >
-          <FormControlLabel
-            value={value1}
-            control={<Radio color="primary" />}
-            label={value1}
-            labelPlacement="start"
-          />
+        <RadioGroup aria-label="gender" name={name} value={value} onChange={onChange}>
+          <FormControlLabel value={value1} control={<Radio color="primary" />} label={value1} labelPlacement="start" />
           {icon}
-          <FormControlLabel
-            value={value2}
-            control={<Radio color="primary" />}
-            labelPlacement="start"
-            label={value2}
-          />
+          <FormControlLabel value={value2} control={<Radio color="primary" />} labelPlacement="start" label={value2} />
           {iconTwo}
         </RadioGroup>
       </FormControl>

@@ -8,6 +8,6 @@ const makeStore = () => {
       [authReducer.name]: authReducer.reducer,
     },
   });
-}
+};
 
 export const wrapper = createWrapper(makeStore, { debug: true });

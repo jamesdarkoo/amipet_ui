@@ -20,13 +20,7 @@ export default function LoginBtnSubmit(props) {
   const classes = useStyles();
 
   return (
-    <Button
-      type="submit"
-      fullWidth
-      color="secondary"
-      variant="contained"
-      className={classes.LoginBtnCreate}
-    >
+    <Button type="submit" fullWidth color="secondary" variant="contained" className={classes.LoginBtnCreate}>
       {props.name}
     </Button>
   );

@@ -1,5 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 import Cookies from 'js-cookie';
+import { cache } from '../graphql/client';
 
 const initialState = {
   token: null,
@@ -28,11 +29,13 @@ export const authSlice = createSlice({
       state.token = null;
       state.user = null;
       state.loggedIn = false;
+      Cookies.remove('accessToken');
+      cache.reset();
     },
     setUser(state, action) {
       state.user = action.payload;
       state.loggedIn = true;
-    }
+    },
   },
 });
 

@@ -25,12 +25,7 @@ export default function LoginBtnIcon(props) {
   const classes = useStyles();
 
   return (
-    <Button
-      fullWidth
-      color="secondary"
-      variant="contained"
-      className={classes.LoginBtnCreate}
-    >
+    <Button fullWidth color="secondary" variant="contained" className={classes.LoginBtnCreate}>
       <i className={`${props.icon}`} /> iniciar con {props.name}
     </Button>
   );
