@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import TextField from '@material-ui/core/TextField';
 import Link from 'next/link';
 import Grid from '@material-ui/core/Grid';
@@ -40,12 +40,19 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function SignInSide() {
+export default function SignInSide({ onSubmit }) {
   const classes = useStyles();
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    onSubmit(email, password);
+  }
 
   return (
     <>
-      <form className={classes.form} noValidate>
+      <form className={classes.form} noValidate onSubmit={handleSubmit}>
         <TextField
           className={classes.input}
           variant="outlined"
@@ -55,9 +62,11 @@ export default function SignInSide() {
           id="email"
           label="Correo electronico"
           name="email"
+          value={email}
           autoComplete="email"
+          onChange={(e) => setEmail(e.target.value)}
         />
-        <EditPassword label="Contraseña" width={80} />
+        <EditPassword label="Contraseña" width={80} value={password} onChange={(e) => setPassword(e.target.value)} />
         <LoginBtnSubmit name="Ingresar" />
         <Grid container>
           <Grid item xs className={classes.LoginText}>

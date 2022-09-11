@@ -4,7 +4,7 @@ import Grid from '@material-ui/core/Grid';
 import { makeStyles } from '@material-ui/core/styles';
 import Gender from './Gender';
 import Bio from './Bio';
-import Icon from './Icon';
+import Icon from '../../../Icon';
 import EditPassword from '../../../EditPassword';
 import DateFnsUtils from '@date-io/date-fns';
 import deLocale from 'date-fns/locale/es';

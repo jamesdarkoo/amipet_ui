@@ -1,14 +1,14 @@
 import React from 'react';
+import Link from 'next/link';
 import LoginBtnSubmit from './LoginBtnSubmit';
-import EditPassword from '../EditProfile/EditPassword';
+import EditPassword from '../../../EditPassword';
 import TextField from '@material-ui/core/TextField';
 import LoginContainer from './LoginContainer';
 import LoginBtn from './LoginBtn';
 import { makeStyles } from '@material-ui/core/styles';
 import PropTypes from 'prop-types';
 import Button from '@material-ui/core/Button';
-import Icon from '../EditProfile/Icon';
-import { Link } from '@reach/router';
+import Icon from '../../../Icon';
 
 const useStyles = makeStyles((theme) => ({
   LoginBtnCreate: {
@@ -136,8 +136,10 @@ export default function LoginBtnCreate() {
         </div>
         <LoginBtnSubmit name="Registrarse" />
       </form>
-      <Link to="/sign-in" className={classes.Link}>
-        <LoginBtn name="Ingresa con tu cuenta" />
+      <Link href="/sign-in" className={classes.Link}>
+        <a>
+          <LoginBtn name="Ingresa con tu cuenta" />  
+        </a>
       </Link>
     </LoginContainer>
   );
