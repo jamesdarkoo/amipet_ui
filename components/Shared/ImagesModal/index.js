@@ -1,9 +1,8 @@
 import React, { useState, useEffect, useCallback } from 'react';
-import Image from 'next/image';
 import { makeStyles } from '@material-ui/core/styles';
-import GridList from '@material-ui/core/GridList';
-import GridListTile from '@material-ui/core/GridListTile';
-import Carousel, { Modal, ModalGateway } from 'react-images';
+import ImageList from '@material-ui/core/ImageList';
+import ImageListItem from '@material-ui/core/ImageListItem';
+// import Carousel, { Modal, ModalGateway } from 'react-images';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -69,26 +68,20 @@ export default function ImagesModal({ photos, number }) {
   }
   return (
     <div className={classes.root}>
-      <GridList
-        cellHeight={height}
+      <ImageList
+        rowHeight={height}
         cols={numberCard}
         className={classes.gridList}
       >
         {photos.map((tile, idx) => {
           return (
-            <GridListTile key={idx}>
-              <Image
-                src={tile.src}
-                height={46}
-                width={120}
-                alt={tile.title}
-                onClick={() => openLightbox(idx)}
-              />
-            </GridListTile>
+            <ImageListItem key={idx}>
+              <img src={tile.src} alt={tile.title} onClick={() => openLightbox(idx)} />
+            </ImageListItem>
           );
         })}
-      </GridList>
-      <ModalGateway>
+      </ImageList>
+      {/* <ModalGateway>
         {viewerIsOpen ? (
           <Modal onClose={closeLightbox}>
             <Carousel
@@ -101,7 +94,7 @@ export default function ImagesModal({ photos, number }) {
             />
           </Modal>
         ) : null}
-      </ModalGateway>
+      </ModalGateway> */}
     </div>
   );
 }

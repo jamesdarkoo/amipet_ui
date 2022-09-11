@@ -75,12 +75,12 @@ export default function IconLogin() {
   return (
     <>
       <IconButton aria-label="show 4 new mails" className={classes.root}>
-        <Badge badgeContent={4} className={classes.Badge}>
+        <Badge badgeContent={4} className={classes.Badge} overlap="rectangular">
           <NotificationsOutlined />
         </Badge>
       </IconButton>
       <IconButton aria-label="show 4 new mails" className={classes.root}>
-        <Badge badgeContent={4} className={classes.Badge}>
+        <Badge badgeContent={4} className={classes.Badge} overlap="rectangular">
           <MailOutlineOutlined />
         </Badge>
       </IconButton>

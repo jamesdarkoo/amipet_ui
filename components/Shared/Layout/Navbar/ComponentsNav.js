@@ -1,6 +1,6 @@
 import React from 'react';
 import { IconButton } from '@material-ui/core';
-import { fade, makeStyles } from '@material-ui/core/styles';
+import { alpha, makeStyles } from '@material-ui/core/styles';
 import { Search } from '@material-ui/icons';
 import Logo from './Logo';
 import SearchBox from './SearchBox';
@@ -17,9 +17,9 @@ const useStyles = makeStyles((theme) => ({
   search: {
     'position': 'relative',
     'borderRadius': theme.shape.borderRadius,
-    'backgroundColor': fade(theme.palette.common.white, 0.15),
+    'backgroundColor': alpha(theme.palette.common.white, 0.15),
     '&:hover': {
-      backgroundColor: fade(theme.palette.common.white, 0.25),
+      backgroundColor: alpha(theme.palette.common.white, 0.25),
     },
     'width': 'auto',
     [theme.breakpoints.up('sm')]: {
