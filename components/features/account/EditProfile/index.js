@@ -3,7 +3,7 @@ import CssBaseline from '@material-ui/core/CssBaseline';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
-import EditContact from './EditContact';
+import FormPerfil from './FormPerfil/FormPerfil';
 import EditProfession from './EditProfession';
 import PersonOutlineIcon from '@material-ui/icons/PersonOutline';
 import DropZonePicture from './DropZonePicture';
@@ -11,6 +11,7 @@ import Divider from '@material-ui/core/Divider';
 import Btns from './Btns';
 import BtnSubmit from './BtnSubmit';
 import Title from '../../../Title';
+import useFormState from '../../../../hooks/useFormState';
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -54,8 +55,16 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function EditProfile() {
+export default function EditProfile({ profile }) {
   const classes = useStyles();
+  const { formState, updateFormState } = useFormState(() => profile);
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.info('submit form');
+  }
+
+  console.info('profile===', profile, formState);
 
   return (
     <Container component="main" maxWidth="lg">
@@ -64,8 +73,8 @@ export default function EditProfile() {
       <Container maxWidth="md">
         <div className={classes.paper}>
           <Title title="Crear perfil" />
-          <form className={classes.form} noValidate>
-            <EditContact />
+          <form className={classes.form} onSubmit={handleSubmit}>
+            <FormPerfil formState={formState} updateFormState={updateFormState} />
             <div className={classes.picture}>
               <DropZonePicture />
               <Typography component="h3" variant="h5" className={classes.profile}>

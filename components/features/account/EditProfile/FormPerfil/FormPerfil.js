@@ -1,73 +1,53 @@
 import React, { useState } from 'react';
 import TextField from '@material-ui/core/TextField';
+import Radio from '@material-ui/core/Radio';
+import RadioGroup from '@material-ui/core/RadioGroup';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
+import FormControl from '@material-ui/core/FormControl';
+import FormLabel from '@material-ui/core/FormLabel';
 import Grid from '@material-ui/core/Grid';
-import { makeStyles } from '@material-ui/core/styles';
-import Gender from './Gender';
-import Bio from './Bio';
-import Icon from '../../../Icon';
-import EditPassword from '../../../EditPassword';
 import DateFnsUtils from '@date-io/date-fns';
 import deLocale from 'date-fns/locale/es';
 import { MuiPickersUtilsProvider, KeyboardDatePicker } from '@material-ui/pickers';
+import useStyles from './FormPerfil.styles';
 
-const useStyles = makeStyles((theme) => ({
-  root: {
-    alignItems: 'center',
-  },
-  TextDate: {
-    '& .MuiOutlinedInput-root': {
-      '&:hover fieldset': {
-        borderColor: theme.palette.primary.main,
-      },
-    },
-    '& .MuiOutlinedInput-adornedEnd': {
-      paddingRight: 0,
-    },
-    '& .MuiIconButton-root': {
-      padding: 8,
-    },
-    '& .MuiIconButton-label': {
-      '& .MuiSvgIcon-root': {
-        color: theme.palette.primary.main,
-      },
-    },
-  },
-  Count: {
-    margin: '10px 0',
-    textAlign: 'end',
-    fontSize: 18,
-    color: theme.palette.secondary.dark,
-  },
-  Item: {
-    'margin': '10px 0',
-    '& .MuiSelect-iconOutlined': {
-      color: theme.palette.primary.main,
-      fontSize: 40,
-      right: 0,
-      top: 'initial',
-    },
-    '& .MuiOutlinedInput-root': {
-      '&:hover fieldset': {
-        borderColor: theme.palette.primary.main,
-      },
-    },
-  },
-}));
 
-export default function EditContact() {
+export default function FormPerfil({ formState, updateFormState }) {
   const [selectedDate, setSelectedDate] = useState(new Date('2020-08-18T21:11:54'));
+
   const handleDateChange = (date) => {
     setSelectedDate(date);
   };
   const classes = useStyles();
+
   return (
     <>
       <Grid container spacing={2} className={classes.root}>
         <Grid item xs={12} sm={6} className={classes.Item}>
-          <TextField className={classes.TextField} size="small" name="firstName" variant="outlined" fullWidth id="firstName" label="Nombres" />
+          <TextField
+            className={classes.TextField}
+            size="small"
+            name="firstName"
+            variant="outlined"
+            fullWidth
+            id="firstName"
+            label="Nombres"
+            required
+            value={formState.firstName}
+            onChange={(e) => updateFormState({firstName: e.target.value })} />
         </Grid>
         <Grid item xs={12} sm={6} className={classes.Item}>
-          <TextField className={classes.TextField} size="small" name="lastName" variant="outlined" fullWidth id="lastName" label="Apellidos" />
+          <TextField
+            className={classes.TextField}
+            size="small"
+            name="lastName"
+            variant="outlined"
+            fullWidth
+            id="lastName"
+            label="Apellidos"
+            required
+            value={formState.lastName}
+            onChange={(e) => updateFormState({ lastName: e.target.value })} />
         </Grid>
       </Grid>
       <Grid container spacing={2} className={classes.root}>
@@ -116,12 +96,31 @@ export default function EditContact() {
           </MuiPickersUtilsProvider>
         </Grid>
         <Grid item xs={12} sm={6} className={classes.Item}>
-          <TextField className={classes.TextField} size="small" name="rut" variant="outlined" fullWidth id="rut" label="Rut:" />
+          <TextField
+            className={classes.TextField}
+            size="small"
+            name="rut"
+            variant="outlined"
+            fullWidth
+            id="rut"
+            label="Rut:"
+            value={formState.rut}
+            onChange={(e) => updateFormState({ rut: e.target.value })}/>
         </Grid>
       </Grid>
       <Grid container spacing={2} className={classes.root}>
         <Grid item xs={12} className={classes.Item}>
-          <TextField className={classes.TextField} size="small" name="domicilio" variant="outlined" fullWidth id="domicilio" label="Domicilio" />
+          <TextField
+            className={classes.TextField}
+            size="small"
+            name="domicilio"
+            variant="outlined"
+            fullWidth
+            id="domicilio"
+            label="Domicilio"
+            value={formState.address}
+            onChange={(e) => updateFormState({ address: e.target.value })}
+            />
         </Grid>
       </Grid>
       <Grid container spacing={2} className={classes.root}>
@@ -136,6 +135,8 @@ export default function EditContact() {
             label="Celular"
             type="number"
             inputProps={{ min: 0 }}
+            value={formState.cellPhone}
+            onChange={(e) => updateFormState({ cellPhone: e.target.value })}
           />
         </Grid>
         <Grid item xs={12} sm={6} className={classes.Item}>
@@ -149,26 +150,47 @@ export default function EditContact() {
             label="Telefono"
             type="number"
             inputProps={{ min: 0 }}
+            value={formState.phone}
+            onChange={(e) => updateFormState({ phone: e.target.value })}
           />
         </Grid>
       </Grid>
       <Grid container spacing={2} className={classes.root}>
         <Grid item xs={12} className={classes.Item}>
-          <TextField className={classes.TextField} size="small" name="mail" variant="outlined" fullWidth id="mail" label="Correo electronico" />
+          <FormControl component="fieldset" className={classes.GenderContainer}>
+            <FormLabel component="label">Sexo: </FormLabel>
+            <RadioGroup
+              aria-label="gender"
+              name="sex"
+              className={classes.GenderGroupRadio}
+              value={formState.sex}
+              onChange={(e) => updateFormState({ sex: e.target.value})}
+            >
+              <FormControlLabel value="male" control={<Radio color="primary" />} label="Hombre" labelPlacement="start" />
+              <FormControlLabel value="female" control={<Radio color="primary" />} label="Mujer" labelPlacement="start" />
+            </RadioGroup>
+          </FormControl>
         </Grid>
       </Grid>
-      <Grid container spacing={2} className={classes.root}>
-        <Grid item xs={12} sm={6} className={classes.Item}>
-          <EditPassword label="Contraseña" width={80} />
-        </Grid>
-        <Grid item xs={12} sm={6} className={classes.Item}>
-          <EditPassword label="Confirmar contraseña" width={160} />
-        </Grid>
-      </Grid>
-      <Gender desc="Sexo:" male="Hombre" female="Mujer" icon={<Icon icon="fas fa-mars" />} iconTwo={<Icon icon="fas fa-venus" />} />
       <Grid container spacing={2} className={classes.root}>
         <Grid item xs={12} className={classes.Item}>
-          <Bio number="200" desc="Bio" />
+          <TextField
+            className={classes.TextField}
+            onChange={(e) => {
+              updateFormState({ biography: e.target.value })
+            }}
+            value={formState.biography}
+            size="small"
+            name="biography"
+            variant="outlined"
+            multiline
+            fullWidth
+            rows="4"
+            id="outlined-multiline-static"
+            label="Biografía"
+            inputProps={{ maxLength: 200 }}
+          />
+          <p className={classes.Count}>{200 - (formState.biography?.length ?? 0)}</p>
         </Grid>
       </Grid>
     </>
