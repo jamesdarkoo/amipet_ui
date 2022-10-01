@@ -4,12 +4,13 @@ import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import FormPerfil from './FormPerfil/FormPerfil';
-import EditProfession from './EditProfession';
+import FormPerfilProfessional from './FormPerfilProfessional/FormPerfilProfessional';
 import PersonOutlineIcon from '@material-ui/icons/PersonOutline';
 import DropZonePicture from './DropZonePicture';
 import Divider from '@material-ui/core/Divider';
+import Button from '@material-ui/core/Button';
 import Btns from './Btns';
-import BtnSubmit from './BtnSubmit';
+
 import Title from '../../../Title';
 import useFormState from '../../../../hooks/useFormState';
 
@@ -53,6 +54,21 @@ const useStyles = makeStyles((theme) => ({
   SeccionEnd: {
     textAlign: 'center',
   },
+  BtnSubmit: {
+    'color': theme.palette.secondary.light,
+    'backgroundColor': theme.palette.secondary.main,
+    'margin': theme.spacing(3, 0),
+    'width': '45%',
+    [theme.breakpoints.down('sm')]: {
+      width: '60%',
+    },
+    [theme.breakpoints.down('xs')]: {
+      width: '90%',
+    },
+    '&:hover': {
+      backgroundColor: theme.palette.secondary.main,
+    },
+  }
 }));
 
 export default function EditProfile({ profile }) {
@@ -87,9 +103,11 @@ export default function EditProfile({ profile }) {
                 Perfil profesional
               </Typography>
               <div className={classes.form}>
-                <EditProfession />
+                <FormPerfilProfessional formState={formState} updateFormState={updateFormState} />
               </div>
-              <BtnSubmit />
+              <Button type="submit" fullWidth variant="contained" className={classes.BtnSubmit}>
+                GUARDAR
+              </Button>
             </div>
           </form>
         </div>
