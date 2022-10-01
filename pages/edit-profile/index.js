@@ -7,10 +7,10 @@ import withAuthorization from '../../components/features/auth/auth.hoc';
 
 const Account = () => {
   const { loading, error, data } = useQuery(Profilequery);
-  console.info('profile loading==', loading, error, data);
+
   return (
     <Layout>
-      {!loading && <EditProfile profile={data.me} />}
+      {!loading && <EditProfile profile={data.myProfile} />}
     </Layout>
   );
 };

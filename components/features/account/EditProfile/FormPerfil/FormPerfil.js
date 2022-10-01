@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
+import { useQuery, useLazyQuery } from '@apollo/client';
 import TextField from '@material-ui/core/TextField';
+import MenuItem from '@material-ui/core/MenuItem';
 import Radio from '@material-ui/core/Radio';
 import RadioGroup from '@material-ui/core/RadioGroup';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
@@ -9,16 +11,25 @@ import Grid from '@material-ui/core/Grid';
 import DateFnsUtils from '@date-io/date-fns';
 import deLocale from 'date-fns/locale/es';
 import { MuiPickersUtilsProvider, KeyboardDatePicker } from '@material-ui/pickers';
+import regionsQL from '../../../../../graphql/queries/regions';
+import communesQL from '../../../../../graphql/queries/communes';
 import useStyles from './FormPerfil.styles';
 
 
 export default function FormPerfil({ formState, updateFormState }) {
+  const { data: regions } = useQuery(regionsQL);
+  const [getCommunes, { loading, data: communes }] = useLazyQuery(communesQL);
+
   const [selectedDate, setSelectedDate] = useState(new Date('2020-08-18T21:11:54'));
 
   const handleDateChange = (date) => {
     setSelectedDate(date);
   };
   const classes = useStyles();
+  const handleChangeRegion = (regionId) => {
+    getCommunes({ variables: { regionId } });
+    updateFormState({ regionId })
+  }
 
   return (
     <>
@@ -59,9 +70,16 @@ export default function FormPerfil({ formState, updateFormState }) {
             variant="outlined"
             fullWidth
             select
-            id="outlined-select-currency-native"
             label="Región"
-          />
+            value={formState.regionId}
+            onChange={(e) => handleChangeRegion(e.target.value)}
+          >
+            {regions?.regions.map((option) => (
+              <MenuItem key={option.id} value={option.id}>
+                {option.name}
+              </MenuItem>
+            ))}
+          </TextField>
         </Grid>
         <Grid item xs={12} sm={6} className={classes.Item}>
           <TextField
@@ -71,9 +89,17 @@ export default function FormPerfil({ formState, updateFormState }) {
             variant="outlined"
             fullWidth
             select
-            id="outlined-select-currency-native"
             label="Comuna"
-          />
+            disabled={loading}
+            value={formState.communeId}
+            onChange={(e) => updateFormState({ communeId:  e.target.value })}
+          >
+            {communes?.communes.map((option) => (
+              <MenuItem key={option.id} value={option.id}>
+                {option.name}
+              </MenuItem>
+            ))}
+          </TextField>
         </Grid>
       </Grid>
       <Grid container spacing={2} className={classes.root}>
