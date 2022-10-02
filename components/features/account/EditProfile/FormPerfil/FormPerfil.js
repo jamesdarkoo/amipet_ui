@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useQuery, useLazyQuery } from '@apollo/client';
 import TextField from '@material-ui/core/TextField';
 import MenuItem from '@material-ui/core/MenuItem';
@@ -23,8 +23,11 @@ export default function FormPerfil({ formState, updateFormState }) {
   const [getCommunes, { loading, data: communes }] = useLazyQuery(communesQL);
   const classes = useStyles();
 
+  useEffect(() => {
+    getCommunes({ variables: { regionId: formState.regionId } });
+  }, [formState.regionId]);
+
   const handleChangeRegion = (regionId) => {
-    getCommunes({ variables: { regionId } });
     updateFormState({ regionId })
   }
 
@@ -185,11 +188,11 @@ export default function FormPerfil({ formState, updateFormState }) {
               aria-label="gender"
               name="sex"
               className={classes.GenderGroupRadio}
-              value={formState.sex}
+              value={formState.gender}
               onChange={(e) => updateFormState({ gender: e.target.value})}
             >
-              <FormControlLabel value="male" control={<Radio color="primary" />} label="Hombre" labelPlacement="start" />
-              <FormControlLabel value="female" control={<Radio color="primary" />} label="Mujer" labelPlacement="start" />
+              <FormControlLabel value="MALE" control={<Radio color="primary" />} label="Hombre" labelPlacement="start" />
+              <FormControlLabel value="FEMALE" control={<Radio color="primary" />} label="Mujer" labelPlacement="start" />
             </RadioGroup>
           </FormControl>
         </Grid>

@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useCallback, useState } from 'react';
+import { useMutation } from '@apollo/client';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
@@ -6,13 +7,14 @@ import Container from '@material-ui/core/Container';
 import FormPerfil from './FormPerfil/FormPerfil';
 import FormPerfilProfessional from './FormPerfilProfessional/FormPerfilProfessional';
 import PersonOutlineIcon from '@material-ui/icons/PersonOutline';
-import DropZonePicture from './DropZonePicture';
+import Avatar from './Avatar';
 import Divider from '@material-ui/core/Divider';
 import Button from '@material-ui/core/Button';
 import Btns from './Btns';
 
 import Title from '../../../Title';
 import useFormState from '../../../../hooks/useFormState';
+import updateProfileQL from '../../../../graphql/mutations/updateProfile';
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -73,14 +75,37 @@ const useStyles = makeStyles((theme) => ({
 
 export default function EditProfile({ profile }) {
   const classes = useStyles();
-  const { formState, updateFormState } = useFormState(() => profile);
+  const [updateProfile, {loading, error, data}] = useMutation(updateProfileQL);
+  const [avatarFile, setAvatarFile] = useState(null);
+  const { formState, updateFormState } = useFormState(() => ({
+    birthdate: profile.birthdate,
+    biography: profile.biography,
+    gender: profile.gender,
+    address: profile.address,
+    phone: profile.phone,
+    cellPhone: profile.cellPhone,
+    career: profile.career,
+    school: profile.school,
+    regionId: profile.region?.id,
+    communeId: profile.commune?.id,
+    rut: profile.rut,
+    periodEnd: profile.periodEnd,
+    periodStart: profile.periodStart,
+    firstName: profile.firstName,
+    lastName: profile.lastName,
+  }));
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.info('submit form');
+    updateProfile({ variables: { input: { ...formState, avatar: avatarFile } } })
   }
 
-  console.info('profile===', profile, formState);
+  const handleChangeAvatar = useCallback((file) => {
+    setAvatarFile(file);
+  }, []);
+
+  console.info('profile', profile, formState);
+  console.info('updateprofile', error, data)
 
   return (
     <Container component="main" maxWidth="lg">
@@ -92,7 +117,7 @@ export default function EditProfile({ profile }) {
           <form className={classes.form} onSubmit={handleSubmit}>
             <FormPerfil formState={formState} updateFormState={updateFormState} />
             <div className={classes.picture}>
-              <DropZonePicture />
+              <Avatar onChange={handleChangeAvatar} />
               <Typography component="h3" variant="h5" className={classes.profile}>
                 Foto perfil
               </Typography>

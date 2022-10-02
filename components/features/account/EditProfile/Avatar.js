@@ -1,5 +1,5 @@
-import React from 'react';
-import Dropzone from 'react-dropzone';
+import React, { memo } from 'react';
+import { useDropzone } from 'react-dropzone';
 import CameraAltOutlinedIcon from '@material-ui/icons/CameraAltOutlined';
 import { makeStyles } from '@material-ui/core/styles';
 
@@ -32,21 +32,22 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function MyDropzone(props) {
+function Avatar({ onChange }) {
+  const { acceptedFiles, getRootProps, getInputProps } = useDropzone({ maxFiles: 1, multiple: false, accept: { 'image/*': [] } });
   const classes = useStyles();
 
+  acceptedFiles.forEach((file) => {
+    onChange(file);
+  });
+
   return (
-    <Dropzone onDrop={(acceptedFiles) => console.log(acceptedFiles)}>
-      {({ getRootProps, getInputProps }) => (
-        <section className={classes.section}>
-          <div {...getRootProps()} className={classes.div}>
-            <input {...getInputProps()} />
-            <CameraAltOutlinedIcon className={classes.icon} />
-          </div>
-        </section>
-      )}
-    </Dropzone>
+    <section className={classes.section}>
+      <div {...getRootProps()} className={classes.div}>
+        <input name="avatar" {...getInputProps()} />
+        <CameraAltOutlinedIcon className={classes.icon} />
+      </div>
+    </section>
   );
 }
 
-export default MyDropzone;
+export default memo(Avatar);

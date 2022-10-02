@@ -1,5 +1,6 @@
 import Cookies from 'js-cookie';
-import { ApolloClient, InMemoryCache, HttpLink, ApolloLink, concat } from '@apollo/client';
+import { ApolloClient, InMemoryCache, ApolloLink, concat } from '@apollo/client';
+import { createUploadLink } from 'apollo-upload-client';
 
 const uri = process.env.NEXT_PUBLIC_GRAPHQL_ENDPOINT;
 
@@ -22,12 +23,12 @@ const authMiddleware = new ApolloLink((operation, forward) => {
   return forward(operation);
 });
 
-const httpLink = new HttpLink({ uri });
 export const cache = new InMemoryCache();
+const uploadLink = createUploadLink({ uri });
 
 const client = new ApolloClient({
   cache,
-  link: concat(authMiddleware, httpLink),
+  link: concat(authMiddleware, uploadLink),
 });
 
 export default client;

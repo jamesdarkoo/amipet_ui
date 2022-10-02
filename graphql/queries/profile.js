@@ -4,6 +4,7 @@ export default gql`
   query profile {
     myProfile {
       id
+      avatarUrl
       birthdate
       biography
       gender
@@ -12,8 +13,8 @@ export default gql`
       cellPhone
       career
       school
-      regionId: region {id}
-      communeId: commune {id}
+      region { id name }
+      commune { id name }
       rut
       avatarUrl
       periodEnd
