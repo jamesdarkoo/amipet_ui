@@ -6,6 +6,8 @@ import AddOutlinedIcon from '@material-ui/icons/AddOutlined';
 import DateFnsUtils from '@date-io/date-fns';
 import deLocale from 'date-fns/locale/es';
 import { MuiPickersUtilsProvider, KeyboardDatePicker } from '@material-ui/pickers';
+import format from 'date-fns/format';
+import parseISO from 'date-fns/parseISO';
 import useStyles from './FormPerfilProfessional.styles';
 import Dropzone from '../Dropzone';
 
@@ -56,6 +58,8 @@ export default function FormPerfilProfessional({ formState, updateFormState }) {
               inputVariant="outlined"
               label="Desde"
               format="MM/dd/yyyy"
+              value={formState.periodStart ? parseISO(formState.periodStart) : null}
+              onChange={(value) => updateFormState({ periodStart: format(value, 'yyyy-MM-dd') })}
             />
           </MuiPickersUtilsProvider>
 
@@ -67,6 +71,8 @@ export default function FormPerfilProfessional({ formState, updateFormState }) {
               inputVariant="outlined"
               label="Hasta"
               format="MM/dd/yyyy"
+              value={formState.periodEnd ? parseISO(formState.periodEnd) : null}
+              onChange={(value) => updateFormState({ periodEnd: format(value, 'yyyy-MM-dd') })}
             />
           </MuiPickersUtilsProvider>
         </Grid>

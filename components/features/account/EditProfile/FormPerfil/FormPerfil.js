@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useQuery, useLazyQuery } from '@apollo/client';
 import TextField from '@material-ui/core/TextField';
 import MenuItem from '@material-ui/core/MenuItem';
@@ -10,6 +10,8 @@ import FormLabel from '@material-ui/core/FormLabel';
 import Grid from '@material-ui/core/Grid';
 import DateFnsUtils from '@date-io/date-fns';
 import deLocale from 'date-fns/locale/es';
+import format from 'date-fns/format';
+import parseISO from 'date-fns/parseISO';
 import { MuiPickersUtilsProvider, KeyboardDatePicker } from '@material-ui/pickers';
 import regionsQL from '../../../../../graphql/queries/regions';
 import communesQL from '../../../../../graphql/queries/communes';
@@ -19,13 +21,8 @@ import useStyles from './FormPerfil.styles';
 export default function FormPerfil({ formState, updateFormState }) {
   const { data: regions } = useQuery(regionsQL);
   const [getCommunes, { loading, data: communes }] = useLazyQuery(communesQL);
-
-  const [selectedDate, setSelectedDate] = useState(new Date('2020-08-18T21:11:54'));
-
-  const handleDateChange = (date) => {
-    setSelectedDate(date);
-  };
   const classes = useStyles();
+
   const handleChangeRegion = (regionId) => {
     getCommunes({ variables: { regionId } });
     updateFormState({ regionId })
@@ -110,11 +107,10 @@ export default function FormPerfil({ formState, updateFormState }) {
               size="small"
               fullWidth
               inputVariant="outlined"
-              id="date-picker-dialog"
               label="Fecha de nacimiento"
               format="MM/dd/yyyy"
-              value={selectedDate}
-              onChange={handleDateChange}
+              value={formState.birthdate ? parseISO(formState.birthdate) : null}
+              onChange={(value) => updateFormState({ birthdate: format(value, 'yyyy-MM-dd') })}
               KeyboardButtonProps={{
                 'aria-label': 'change date',
               }}
@@ -190,7 +186,7 @@ export default function FormPerfil({ formState, updateFormState }) {
               name="sex"
               className={classes.GenderGroupRadio}
               value={formState.sex}
-              onChange={(e) => updateFormState({ sex: e.target.value})}
+              onChange={(e) => updateFormState({ gender: e.target.value})}
             >
               <FormControlLabel value="male" control={<Radio color="primary" />} label="Hombre" labelPlacement="start" />
               <FormControlLabel value="female" control={<Radio color="primary" />} label="Mujer" labelPlacement="start" />
