@@ -1,14 +1,13 @@
 import React, { useCallback, useState } from 'react';
+import { useRouter } from 'next/router';
 import { useMutation } from '@apollo/client';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import FormPerfil from './FormPerfil/FormPerfil';
-import FormPerfilProfessional from './FormPerfilProfessional/FormPerfilProfessional';
 import PersonOutlineIcon from '@material-ui/icons/PersonOutline';
 import Avatar from './Avatar';
-import Divider from '@material-ui/core/Divider';
 import Button from '@material-ui/core/Button';
 import Btns from './Btns';
 
@@ -75,7 +74,14 @@ const useStyles = makeStyles((theme) => ({
 
 export default function EditProfile({ profile }) {
   const classes = useStyles();
-  const [updateProfile, {loading, error, data}] = useMutation(updateProfileQL);
+  const router = useRouter();
+  const [updateProfile, {loading, error, data}] = useMutation(updateProfileQL, {
+    onCompleted({ updateProfile }) {
+      if (updateProfile?.success) {
+          router.push('/profile');
+      }
+    }
+  });
   const [avatarFile, setAvatarFile] = useState(null);
   const { formState, updateFormState } = useFormState(() => ({
     birthdate: profile.birthdate,
@@ -122,14 +128,14 @@ export default function EditProfile({ profile }) {
                 Foto perfil
               </Typography>
             </div>
-            <Divider className={classes.Divider} />
+            {/* <Divider className={classes.Divider} /> */}
             <div className={classes.SeccionEnd}>
-              <Typography component="h3" variant="h5" className={classes.profile}>
+              {/* <Typography component="h3" variant="h5" className={classes.profile}>
                 Perfil profesional
               </Typography>
               <div className={classes.form}>
                 <FormPerfilProfessional formState={formState} updateFormState={updateFormState} />
-              </div>
+              </div> */}
               <Button type="submit" fullWidth variant="contained" className={classes.BtnSubmit}>
                 GUARDAR
               </Button>

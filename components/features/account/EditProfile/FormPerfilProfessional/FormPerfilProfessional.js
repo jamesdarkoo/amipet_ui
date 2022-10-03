@@ -49,7 +49,8 @@ export default function FormPerfilProfessional({ formState, updateFormState }) {
           <Typography component="h3" variant="h5" className={classes.period}>
             Periodo
           </Typography>
-
+        </Grid>
+        <Grid item xs={12} sm={4}>
           <MuiPickersUtilsProvider utils={DateFnsUtils} locale={deLocale}>
             <KeyboardDatePicker
               className={classes.TextDate}
@@ -62,7 +63,8 @@ export default function FormPerfilProfessional({ formState, updateFormState }) {
               onChange={(value) => updateFormState({ periodStart: format(value, 'yyyy-MM-dd') })}
             />
           </MuiPickersUtilsProvider>
-
+        </Grid>
+        <Grid item xs={12} sm={4}>
           <MuiPickersUtilsProvider utils={DateFnsUtils} locale={deLocale}>
             <KeyboardDatePicker
               className={classes.TextDate}
@@ -76,6 +78,7 @@ export default function FormPerfilProfessional({ formState, updateFormState }) {
             />
           </MuiPickersUtilsProvider>
         </Grid>
+        <Grid item xs={12} sm={2}></Grid>
       </Grid>
       <Grid container spacing={2} className={classes.grid}>
         <Dropzone desc="adjuntar titulo profesional" icon={<AddOutlinedIcon className={classes.IconAdd} />} />
