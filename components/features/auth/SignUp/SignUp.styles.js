@@ -1,9 +1,6 @@
-import React from 'react';
-import Paper from '@material-ui/core/Paper';
-import Grid from '@material-ui/core/Grid';
 import { makeStyles } from '@material-ui/core/styles';
 
-const useStyles = makeStyles((theme) => ({
+export default makeStyles((theme) => ({
   LoginContainer: {
     maxWidth: '30%',
     borderRadius: 10,
@@ -23,7 +20,6 @@ const useStyles = makeStyles((theme) => ({
     alignItems: 'center',
   },
   image: {
-    height: '91vh',
     padding: '20em 0',
     display: 'flex',
     justifyContent: 'center',
@@ -37,15 +33,3 @@ const useStyles = makeStyles((theme) => ({
     },
   },
 }));
-
-export default function LoginContainer(props) {
-  const classes = useStyles();
-
-  return (
-    <div className={classes.image}>
-      <Grid item md={5} component={Paper} elevation={6} square className={classes.LoginContainer}>
-        <div className={classes.paper}>{props.children}</div>
-      </Grid>
-    </div>
-  );
-}
