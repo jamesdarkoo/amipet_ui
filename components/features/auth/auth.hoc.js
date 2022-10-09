@@ -19,6 +19,14 @@ function withAuthorization(Component) {
       },
     });
 
+    if (loading) {
+      return (<div>loading</div>);
+    }
+
+    if (error) {
+      return <div>{error.message}</div>
+    }
+
     return <Component {...props} />;
   };
 

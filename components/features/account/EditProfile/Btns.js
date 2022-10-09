@@ -1,4 +1,5 @@
 import React from 'react';
+import Link from 'next/link';
 import { makeStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
@@ -47,10 +48,12 @@ export default function Btns(props) {
 
   return (
     <div className={classes.Container}>
-      <Button variant="outlined" className={classes.Btns}>
-        <ArrowBackOutlinedIcon className={classes.Arrow} />
-        {props.btn1}
-      </Button>
+      <Link href="/profile">
+        <Button variant="outlined" className={classes.Btns}>
+          <ArrowBackOutlinedIcon className={classes.Arrow} />
+          {props.btn1}
+        </Button>
+      </Link>
       <Typography component="h3" variant="h5" className={classes.Title}>
         {props.title}
       </Typography>

@@ -1,11 +1,6 @@
-import React from 'react';
-import ProfileContainer from './ProfileContainer';
-import Avatar from '@material-ui/core/Avatar';
 import { makeStyles } from '@material-ui/core/styles';
-import Divider from '@material-ui/core/Divider';
-import BtnFollow from './BtnFollow';
 
-const useStyles = makeStyles((theme) => ({
+export default makeStyles((theme) => ({
   small: {
     width: theme.spacing(20),
     height: theme.spacing(20),
@@ -80,50 +75,7 @@ const useStyles = makeStyles((theme) => ({
       },
     },
   },
+  Btns: {
+    color: theme.palette.secondary.dark,
+  },
 }));
-
-export default function ProfileHeader() {
-  const classes = useStyles();
-
-  return (
-    <ProfileContainer>
-      <Avatar alt="Remy Sharp" src="https://source.unsplash.com/random" className={classes.small} />
-      <div className={classes.info}>
-        <div className={classes.HeaderName}>
-          <h3 className={classes.HeaderNameUser}>jesica alba</h3>
-          <BtnFollow />
-        </div>
-        <div>
-          <ul className={classes.Ul}>
-            <li>
-              <span>
-                <span>4</span>
-                Mascotas
-              </span>
-            </li>
-            <Divider orientation="vertical" flexItem />
-            <li>
-              <span>
-                <span>4</span>
-                Amigos
-              </span>
-            </li>
-            <Divider orientation="vertical" flexItem />
-            <li>
-              <span>
-                <span>4</span>
-                Seguidores
-              </span>
-            </li>
-          </ul>
-        </div>
-        <div className={classes.description}>
-          <p>
-            Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry&apos;s standard dummy text
-            ever since the 1500s, when an unknown printer took a galley of type a
-          </p>
-        </div>
-      </div>
-    </ProfileContainer>
-  );
-}
