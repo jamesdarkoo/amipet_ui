@@ -3,8 +3,8 @@ import { makeStyles } from '@material-ui/core/styles';
 import { Container, Grid } from '@material-ui/core';
 import { faker } from "@faker-js/faker";
 import { faPaw } from '@fortawesome/free-solid-svg-icons';
-import CardPet from '../../../components/layout/cards/cardPet';
-import DividerLine from '../../../components/layout/dividerLine';
+import CardPet from '@/components/layout/cards/cardPet';
+import DividerLine from '@/components/layout/dividerLine';
 
 const categories = [
   'perro',

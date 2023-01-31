@@ -17,11 +17,11 @@ import {
 } from '@fortawesome/free-regular-svg-icons';
 import { faker } from "@faker-js/faker";
 
-import DividerLine from '../../../components/layout/dividerLine';
-import Dotted from '../../../components/layout/buttons/dotted';
-import Search from '../../../components/fields/search';
-import ModalDelete from '../../../components/modals/modalDelete';
-import CardPet from '../../../components/layout/cards/cardPet';
+import DividerLine from '@/components/layout/dividerLine';
+import Dotted from '@/components/layout/buttons/dotted';
+import Search from '@/components/fields/search';
+import ModalDelete from '@/components/modals/modalDelete';
+import CardPet from '@/components/layout/cards/cardPet';
 
 const categories = [
   'perro',
