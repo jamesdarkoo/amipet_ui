@@ -51,7 +51,7 @@ function Gallery({ desktop, mobile, images, active }) {
       <ImageList rowHeight={height} cols={numberCard}>
         {photos.map((title, idx) => {
           return (
-            <ImageListItem key={title.name}>
+            <ImageListItem key={idx}> 
               <Image alt={title.name} width={100} height={100} src={title.src} onClick={() => openLightbox(idx)}></Image>
             </ImageListItem>
           );

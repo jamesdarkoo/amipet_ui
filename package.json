@@ -38,7 +38,8 @@
     "react-dropzone": "^14.2.3",
     "react-images": "1.1.7",
     "react-redux": "^8.0.5",
-    "react-slick": "^0.29.0",
+    "react-slick": "0.25.2",
+    "slick-carousel": "1.8.1",
     "swiper": "6.1.1"
   },
   "devDependencies": {

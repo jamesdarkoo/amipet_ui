@@ -1,8 +1,8 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import ImageList from '@material-ui/core/ImageList';
-import ImageListItem from '@material-ui/core/ImageListItem';
-// import Carousel, { Modal, ModalGateway } from 'react-images';
+import { ImageList, ImageListItem } from '@material-ui/core';
+import Carousel, { Modal, ModalGateway } from 'react-images';
+import Image from 'next/image';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -72,12 +72,12 @@ export default function ImagesModal({ photos, number }) {
         {photos.map((tile, idx) => {
           return (
             <ImageListItem key={idx}>
-              <img src={tile.src} alt={tile.title} onClick={() => openLightbox(idx)} />
+              <Image src={tile.src} alt={tile.title} onClick={() => openLightbox(idx)} height={46} width={120} />
             </ImageListItem>
           );
         })}
       </ImageList>
-      {/* <ModalGateway>
+      <ModalGateway>
         {viewerIsOpen ? (
           <Modal onClose={closeLightbox}>
             <Carousel
@@ -90,7 +90,7 @@ export default function ImagesModal({ photos, number }) {
             />
           </Modal>
         ) : null}
-      </ModalGateway> */}
+      </ModalGateway>
     </div>
   );
 }

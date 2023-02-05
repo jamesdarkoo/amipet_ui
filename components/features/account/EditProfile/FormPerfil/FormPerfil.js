@@ -210,7 +210,7 @@ export default function FormPerfil({ formState, updateFormState }) {
             variant="outlined"
             multiline
             fullWidth
-            rows="4"
+            minRows="4"
             id="outlined-multiline-static"
             label="Biografía"
             inputProps={{ maxLength: 200 }}

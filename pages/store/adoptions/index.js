@@ -39,7 +39,8 @@ const getRandom = (max, min) => Math.floor(Math.random() * (max - min)) + min;
 
 const pets = new Array(12).fill(1).map((_, i) => ({
   id: new Date().getTime() + i,
-  image: faker.image.animals(),
+  // image: faker.image.animals(),
+  image:'http://placekitten.com/640/480',
   name: faker.name.lastName(),
   category: categories[getRandom(categories.length, 0)],
   gender: gender[getRandom(gender.length, 0)],
