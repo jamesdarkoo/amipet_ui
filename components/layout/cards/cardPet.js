@@ -14,6 +14,7 @@ import { faMars, faVenus } from '@fortawesome/free-solid-svg-icons';
 
 const CardPet = ({ name, image, style, gender, children }) => {
   const classes = useStyles(style);
+  if (!gender) gender = 'macho';
 
   return (
     <>
@@ -121,7 +122,7 @@ const useStyles = makeStyles((theme) => ({
 CardPet.propTypes = {
   name: PropTypes.string.isRequired,
   image: PropTypes.string.isRequired,
-  gender: PropTypes.string.isRequired,
+  gender: PropTypes.string,
   children: PropTypes.element,
 };
 export default CardPet;
